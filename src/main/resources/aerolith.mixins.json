@@ -1,0 +1,13 @@
+{
+  "required": true,
+  "package": "io.github.razordevs.aerolith.mixin",
+  "minVersion": "0.8",
+  "compatibilityLevel": "JAVA_21",
+  "refmap": "aerolith.refmap.json",
+  "mixins": [
+
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
