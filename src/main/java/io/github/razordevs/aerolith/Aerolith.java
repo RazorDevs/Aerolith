@@ -18,18 +18,5 @@ public class Aerolith {
 
     public Aerolith() {
         LOGGER.info("Aerolith Initialized");
-
-        BiomePlacementHelper.addAether(Biomes.BADLANDS,
-                new Climate.ParameterPoint(
-                        Climate.Parameter.span(-1.0f, -0.15f),
-                        Climate.Parameter.span(-1.0f, -0.35f),
-                        Climate.Parameter.span(0.3f, 1.0f),
-                        Climate.Parameter.span(-0.375f, 0.05f),
-                        Climate.Parameter.point(0.0f),
-                        Climate.Parameter.span(0.0f, 1.0f),
-                        0L));
-
-        BiomePlacementHelper.replaceAether(AetherBiomes.SKYROOT_FOREST, Biomes.PLAINS);
     }
-
 }
