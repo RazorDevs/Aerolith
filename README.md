@@ -1,2 +1,8 @@
 # Aerolith
-Aerolith is an experimental successor to Aeroblender. It bases off of Biolith instead of Terrablender
+
+Aerolith is a replacement to Aeroblender. It bases off of Biolith instead of Terrablender to handle biome manipulation in The Aether.
+
+# Credits
+
+- Aerolith is property of RazorDevs.
+- Development by TunefulTurnip, darksonic300.
