@@ -1,5 +1,7 @@
 package io.github.razordevs.aerolith;
 
+import com.aetherteam.aether.data.resources.builders.AetherBiomeBuilders;
+import com.aetherteam.aether.data.resources.registries.AetherBiomes;
 import com.mojang.logging.LogUtils;
 import io.github.razordevs.aerolith.biome.BiomePlacementHelper;
 import net.minecraft.world.level.biome.Biomes;
@@ -17,20 +19,17 @@ public class Aerolith {
     public Aerolith() {
         LOGGER.info("Aerolith Initialized");
 
-        try {
-            BiomePlacementHelper.addAether(Biomes.CRIMSON_FOREST,
-                    new Climate.ParameterPoint(
-                            Climate.Parameter.span(-1.0f, -0.15f),
-                            Climate.Parameter.span(-1.0f, -0.35f),
-                            Climate.Parameter.span(0.3f, 1.0f),
-                            Climate.Parameter.span(-0.375f, 0.05f),
-                            Climate.Parameter.point(0.0f),
-                            Climate.Parameter.span(0.0f, 1.0f),
-                            0L));
-            LOGGER.info("Successfully added Crimson Forest biome to Aether");
-        } catch (Exception e) {
-            LOGGER.error("Failed to add Crimson Forest biome to Aether", e);
-        }
+        BiomePlacementHelper.addAether(Biomes.BADLANDS,
+                new Climate.ParameterPoint(
+                        Climate.Parameter.span(-1.0f, -0.15f),
+                        Climate.Parameter.span(-1.0f, -0.35f),
+                        Climate.Parameter.span(0.3f, 1.0f),
+                        Climate.Parameter.span(-0.375f, 0.05f),
+                        Climate.Parameter.point(0.0f),
+                        Climate.Parameter.span(0.0f, 1.0f),
+                        0L));
+
+        BiomePlacementHelper.replaceAether(AetherBiomes.SKYROOT_FOREST, Biomes.PLAINS);
     }
 
 }

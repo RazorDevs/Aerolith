@@ -8,6 +8,8 @@ import com.mojang.datafixers.util.Pair;
 import com.terraformersmc.biolith.api.biome.BiolithFittestNodes;
 import com.terraformersmc.biolith.impl.biome.InterfaceBiomeSource;
 import com.terraformersmc.biolith.impl.compat.VanillaCompat;
+import com.terraformersmc.biolith.impl.mixin.MixinBiomeSource;
+import io.github.razordevs.aerolith.Aerolith;
 import io.github.razordevs.aerolith.biome.BiomePlacementHelper;
 import net.minecraft.core.Holder;
 import net.minecraft.resources.ResourceKey;
@@ -24,9 +26,7 @@ import java.util.List;
 import java.util.function.Function;
 
 @Mixin(value = MultiNoiseBiomeSource.class, priority = 800)
-public abstract class MultiNoiseBiomeSourceMixin extends BiomeSource implements InterfaceBiomeSource  {
-    private ResourceKey<DimensionType> aerolith$dimensionType = InterfaceBiomeSource.DIMENSION_TYPE_UNDEFINED;
-
+public abstract class MultiNoiseBiomeSourceMixin extends MixinBiomeSource implements InterfaceBiomeSource  {
     @Shadow
     protected abstract Climate.ParameterList<Holder<Biome>> parameters();
 
@@ -43,13 +43,15 @@ public abstract class MultiNoiseBiomeSourceMixin extends BiomeSource implements 
                                                 Function<Holder<MultiNoiseBiomeSourceParameterList>, Climate.ParameterList<Holder<Biome>>> rightMap, Operation<Object> original) {
         synchronized (this) {
             // Only compute this once, since our version is more expensive than Mojang's.
+            Aerolith.LOGGER.debug("Injecting parameter list for {}", this.biolith$getDimensionType());
             if (aerolith$biomeParameterList == null) {
                 // Mojang does the exact same cast on the return of this operation.
                 //noinspection unchecked
                 Climate.ParameterList<Holder<Biome>> originalParameterList =
                         (Climate.ParameterList<Holder<Biome>>) original.call(instance, leftMap, rightMap);
 
-                if (this.aerolith$getDimensionType().location().equals(AetherDimensions.AETHER_DIMENSION_TYPE.location())) {
+                Aerolith.LOGGER.debug("After first check");
+                if (this.biolith$getDimensionType().location().equals(AetherDimensions.AETHER_DIMENSION_TYPE.location())) {
                     List<Pair<Climate.ParameterPoint, Holder<Biome>>> parameterList = new ArrayList<>(256);
 
                     // Remove any biomes matching removals
@@ -57,11 +59,13 @@ public abstract class MultiNoiseBiomeSourceMixin extends BiomeSource implements 
                             .filter(BiomePlacementHelper.AETHER::removalFilter)
                             .forEach(parameterList::add);
 
+                    Aerolith.LOGGER.debug("After second check");
                     // Add all biomes from additions, replacements, and sub-biome requests
                     BiomePlacementHelper.AETHER.writeBiomeEntries(parameterList::add);
 
                     aerolith$biomeParameterList = new Climate.ParameterList<>(parameterList);
                 } else {
+                    Aerolith.LOGGER.debug("Failed check");
                     aerolith$biomeParameterList = originalParameterList;
                 }
             }
@@ -82,14 +86,10 @@ public abstract class MultiNoiseBiomeSourceMixin extends BiomeSource implements 
         }
 
         // Apply biome overlays.
-        if (this.aerolith$getDimensionType().registry().equals(AetherDimensions.AETHER_DIMENSION_TYPE.location())) {
+        if (this.biolith$getDimensionType().location().equals(AetherDimensions.AETHER_DIMENSION_TYPE.location())) {
             cir.setReturnValue(BiomePlacementHelper.AETHER.getReplacement(x, y, z, noisePoint, fittestNodes));
         } else {
             cir.setReturnValue(fittestNodes.ultimate().value);
         }
-    }
-
-    public ResourceKey<DimensionType> aerolith$getDimensionType() {
-        return aerolith$dimensionType;
     }
 }
