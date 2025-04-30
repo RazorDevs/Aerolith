@@ -62,3 +62,10 @@ file="META-INF/accesstransformer.cfg"
     versionRange="${biolith_version_range}"
     ordering="AFTER"
     side="BOTH"
+
+[[dependencies.${mod_id}]]
+modId="aether"
+type="required"
+versionRange="${aether_version_range}"
+ordering="AFTER"
+side="BOTH"

@@ -10,6 +10,8 @@
     "BiomeCoordinatorMixin",
     "BiomePlacementLoaderMixin",
     "MinecraftServerMixin",
+    "MultiNoiseBiomeSourceMixin",
+    "ReplaceBiomeMarshallerMixin",
     "SurfaceRuleMarshallerMixin",
     "accessor.DimensionBiomePlacementAccessor"
   ],
