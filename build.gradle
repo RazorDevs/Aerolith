@@ -21,7 +21,6 @@ base {
 java.toolchain.languageVersion = JavaLanguageVersion.of(21)
 
 minecraft.accessTransformers.file rootProject.file('src/main/resources/META-INF/accesstransformer.cfg')
-//minecraft.accessTransformers.entry public net.minecraft.client.Minecraft textureManager # textureManager
 
 runs {
     configureEach {
@@ -81,6 +80,10 @@ repositories {
         name = "ModMaven"
         url = "https://modmaven.dev"
     }
+    maven {
+        name = 'TerraformersMC'
+        url = 'https://maven.terraformersmc.com/'
+    }
     flatDir {
         dir 'libs'
     }
@@ -97,8 +100,8 @@ dependencies {
     implementation "io.wispforest:accessories-neoforge:${project.accessories_version}+${project.minecraft_version}"
     compileOnly "me.shedaniel.cloth:cloth-config-neoforge:${cloth_config_version}"
 
-    implementation "curse.maven:biolith-852512:5626825"
-    //implementation "com.terraformersmc:biolith-fabric:${project.biolith_version}"
+    //implementation "curse.maven:biolith-852512:5626825"
+    implementation "com.terraformersmc:biolith-neoforge:${project.biolith_version}"
 }
 
 tasks.withType(ProcessResources).configureEach {
@@ -113,7 +116,9 @@ tasks.withType(ProcessResources).configureEach {
             mod_license            : mod_license,
             mod_version            : mod_version,
             mod_authors            : mod_authors,
-            mod_description        : mod_description
+            mod_description        : mod_description,
+            biolith_version        : biolith_version,
+            biolith_version_range  : biolith_version_range
     ]
     inputs.properties replaceProperties
 

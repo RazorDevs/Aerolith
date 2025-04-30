@@ -5,11 +5,12 @@
   "compatibilityLevel": "JAVA_21",
   "refmap": "aerolith.refmap.json",
   "mixins": [
+    "AddBiomeMarshallerMixin",
+    "AddSubBiomeMarshallerMixin",
     "BiomeCoordinatorMixin",
-    "BiomePlacementMixin",
+    "BiomePlacementLoaderMixin",
     "MinecraftServerMixin",
     "SurfaceRuleMarshallerMixin",
-    "accessor.AetherPlacementAccessor",
     "accessor.DimensionBiomePlacementAccessor"
   ],
   "injectors": {
