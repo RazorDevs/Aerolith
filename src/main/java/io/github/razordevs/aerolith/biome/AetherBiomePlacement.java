@@ -2,6 +2,7 @@ package io.github.razordevs.aerolith.biome;
 
 import com.terraformersmc.biolith.impl.Biolith;
 import com.terraformersmc.biolith.impl.biome.DimensionBiomePlacement;
+import io.github.razordevs.aerolith.Aerolith;
 
 public class AetherBiomePlacement extends DimensionBiomePlacement {
     private final double[] scale = new double[4];
@@ -9,7 +10,7 @@ public class AetherBiomePlacement extends DimensionBiomePlacement {
     public AetherBiomePlacement() {
         super();
 
-        int configScale = Biolith.getConfigManager().getGeneralConfig().getEndReplacementScale();
+        int configScale = Aerolith.getConfigManager().getAerolithConfig().getAetherReplacementScale();
         scale[0] = 256 * configScale;
         scale[1] =  64 * configScale;
         scale[2] =  16 * configScale;
