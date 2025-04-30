@@ -4,6 +4,7 @@ import com.aetherteam.aether.data.resources.registries.AetherDimensions;
 import com.llamalad7.mixinextras.sugar.Share;
 import com.llamalad7.mixinextras.sugar.ref.LocalRef;
 import com.terraformersmc.biolith.impl.data.BiomePlacementMarshaller;
+import io.github.razordevs.aerolith.biome.AetherBiomeCoordinator;
 import io.github.razordevs.aerolith.biome.BiomePlacementHelper;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.level.biome.Biome;
@@ -20,5 +21,5 @@ public class RemoveBiomeMarshallerMixin {
     @Inject(method = "unmarshall", at = @At("HEAD"), locals = LocalCapture.CAPTURE_FAILHARD)
     public void unmarshall(CallbackInfo ci, @Share("dimension") LocalRef<ResourceKey<DimensionType>> dimension, @Share("biome") LocalRef<ResourceKey<Biome>> biome) {
         if(dimension.get().equals(AetherDimensions.AETHER_DIMENSION_TYPE))
-            BiomePlacementHelper.AETHER.addRemoval(biome.get(), true);    }
+            AetherBiomeCoordinator.AETHER.addRemoval(biome.get(), true);    }
 }

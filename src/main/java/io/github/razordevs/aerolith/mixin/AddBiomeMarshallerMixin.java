@@ -2,6 +2,7 @@ package io.github.razordevs.aerolith.mixin;
 
 import com.aetherteam.aether.data.resources.registries.AetherDimensions;
 import com.terraformersmc.biolith.impl.data.BiomePlacementMarshaller;
+import io.github.razordevs.aerolith.biome.AetherBiomeCoordinator;
 import io.github.razordevs.aerolith.biome.BiomePlacementHelper;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.level.biome.Biome;
@@ -24,7 +25,7 @@ public class AddBiomeMarshallerMixin {
         Climate.ParameterPoint noisePoint = marshaller.noisePoint();
 
         if(dimension.location().equals(AetherDimensions.AETHER_DIMENSION_TYPE.location())) {
-            BiomePlacementHelper.AETHER.addPlacement(biome, noisePoint, true);
+            AetherBiomeCoordinator.AETHER.addPlacement(biome, noisePoint, true);
         }
     }
 }

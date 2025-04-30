@@ -10,6 +10,7 @@ import com.terraformersmc.biolith.impl.biome.InterfaceBiomeSource;
 import com.terraformersmc.biolith.impl.compat.VanillaCompat;
 import com.terraformersmc.biolith.impl.mixin.MixinBiomeSource;
 import io.github.razordevs.aerolith.Aerolith;
+import io.github.razordevs.aerolith.biome.AetherBiomeCoordinator;
 import io.github.razordevs.aerolith.biome.BiomePlacementHelper;
 import net.minecraft.core.Holder;
 import net.minecraft.resources.ResourceKey;
@@ -56,12 +57,12 @@ public abstract class MultiNoiseBiomeSourceMixin extends MixinBiomeSource implem
 
                     // Remove any biomes matching removals
                     originalParameterList.values().stream()
-                            .filter(BiomePlacementHelper.AETHER::removalFilter)
+                            .filter(AetherBiomeCoordinator.AETHER::removalFilter)
                             .forEach(parameterList::add);
 
                     Aerolith.LOGGER.debug("After second check");
                     // Add all biomes from additions, replacements, and sub-biome requests
-                    BiomePlacementHelper.AETHER.writeBiomeEntries(parameterList::add);
+                    AetherBiomeCoordinator.AETHER.writeBiomeEntries(parameterList::add);
 
                     aerolith$biomeParameterList = new Climate.ParameterList<>(parameterList);
                 } else {
@@ -87,7 +88,7 @@ public abstract class MultiNoiseBiomeSourceMixin extends MixinBiomeSource implem
 
         // Apply biome overlays.
         if (this.biolith$getDimensionType().location().equals(AetherDimensions.AETHER_DIMENSION_TYPE.location())) {
-            cir.setReturnValue(BiomePlacementHelper.AETHER.getReplacement(x, y, z, noisePoint, fittestNodes));
+            cir.setReturnValue(AetherBiomeCoordinator.AETHER.getReplacement(x, y, z, noisePoint, fittestNodes));
         } else {
             cir.setReturnValue(fittestNodes.ultimate().value);
         }

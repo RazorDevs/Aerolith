@@ -7,11 +7,11 @@
   "mixins": [
     "AddBiomeMarshallerMixin",
     "AddSubBiomeMarshallerMixin",
-    "BiomeCoordinatorMixin",
     "BiomePlacementLoaderMixin",
     "MinecraftServerMixin",
     "MultiNoiseBiomeSourceMixin",
     "ReplaceBiomeMarshallerMixin",
+    "ServerLevelMixin",
     "SurfaceRuleMarshallerMixin",
     "accessor.DimensionBiomePlacementAccessor"
   ],

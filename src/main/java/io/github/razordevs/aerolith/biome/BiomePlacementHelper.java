@@ -1,16 +1,11 @@
 package io.github.razordevs.aerolith.biome;
 
 import com.terraformersmc.biolith.api.biome.sub.Criterion;
-import com.terraformersmc.biolith.impl.biome.BiomeCoordinator;
-import io.github.razordevs.aerolith.mixin.BiomeCoordinatorMixin;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.biome.Climate;
 
-import java.lang.reflect.Field;
-
 public class BiomePlacementHelper {
-    public static final AetherBiomePlacement AETHER = new AetherBiomePlacement();
 
     /**
      * Place a Aether biome at the specified mixed noise point.
@@ -19,7 +14,7 @@ public class BiomePlacementHelper {
      * @param noisePoint A multi-noise point at which to place the biome
      */
     public static void addAether(ResourceKey<Biome> biome, Climate.ParameterPoint noisePoint) {
-        AETHER.addPlacement(biome, noisePoint, false);
+        AetherBiomeCoordinator.AETHER.addPlacement(biome, noisePoint, false);
     }
 
     /**
@@ -28,7 +23,7 @@ public class BiomePlacementHelper {
      * @param biome The biome to be removed
      */
     public static void removeAether(ResourceKey<Biome> biome) {
-        AETHER.addRemoval(biome, false);
+        AetherBiomeCoordinator.AETHER.addRemoval(biome, false);
     }
 
 
@@ -39,7 +34,7 @@ public class BiomePlacementHelper {
      * @param biome  The replacement biome
      */
     public static void replaceAether(ResourceKey<Biome> target, ResourceKey<Biome> biome) {
-        AETHER.addReplacement(target, biome, 1.0D, false);
+        AetherBiomeCoordinator.AETHER.addReplacement(target, biome, 1.0D, false);
     }
 
     /**
@@ -51,7 +46,7 @@ public class BiomePlacementHelper {
      * @param proportion Approximate fraction of the target biome's volume to replace
      */
     public static void replaceAether(ResourceKey<Biome> target, ResourceKey<Biome> biome, double proportion) {
-        AETHER.addReplacement(target, biome, proportion, false);
+        AetherBiomeCoordinator.AETHER.addReplacement(target, biome, proportion, false);
     }
 
     /**
@@ -63,6 +58,6 @@ public class BiomePlacementHelper {
      * @param criterion Matching criteria for when to replace
      */
     public static void addSubAether(ResourceKey<Biome> target, ResourceKey<Biome> biome, Criterion criterion) {
-        AETHER.addSubBiome(target, biome, criterion, false);
+        AetherBiomeCoordinator.AETHER.addSubBiome(target, biome, criterion, false);
     }
 }

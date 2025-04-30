@@ -2,6 +2,7 @@ package io.github.razordevs.aerolith.mixin;
 
 import com.terraformersmc.biolith.impl.data.BiomePlacementLoader;
 import com.terraformersmc.biolith.impl.data.BiomePlacementMarshaller;
+import io.github.razordevs.aerolith.biome.AetherBiomeCoordinator;
 import io.github.razordevs.aerolith.biome.BiomePlacementHelper;
 import net.minecraft.server.packs.resources.ResourceManager;
 import net.minecraft.util.profiling.ProfilerFiller;
@@ -19,6 +20,6 @@ public class BiomePlacementLoaderMixin {
             at = @At(value = "INVOKE", target = "Lcom/terraformersmc/biolith/impl/biome/EndBiomePlacement;clearFromData()V", shift = At.Shift.AFTER))
 
     public void aerolith$onApply(List<BiomePlacementMarshaller> marshallers, ResourceManager manager, ProfilerFiller profiler, CallbackInfo ci) {
-        BiomePlacementHelper.AETHER.clearFromData();
+        AetherBiomeCoordinator.AETHER.clearFromData();
     }
 }
