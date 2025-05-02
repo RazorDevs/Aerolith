@@ -9,6 +9,7 @@ import io.github.razordevs.aerolith.biome.AetherBiomeCoordinator;
 import io.github.razordevs.aerolith.biome.BiomePlacementHelper;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.level.biome.Biome;
+import net.minecraft.world.level.biome.Climate;
 import net.minecraft.world.level.dimension.DimensionType;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -19,10 +20,15 @@ import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 @Mixin(BiomePlacementMarshaller.AddSubBiomeMarshaller.class)
 public class AddSubBiomeMarshallerMixin {
 
-    @Inject(method = "unmarshall", at = @At("HEAD"), locals = LocalCapture.CAPTURE_FAILHARD)
-    public void unmarshall(CallbackInfo ci, @Share("dimension") LocalRef<ResourceKey<DimensionType>> dimension,
-                           @Share("target") LocalRef<ResourceKey<Biome>> target, @Share("biome") LocalRef<ResourceKey<Biome>> biome,
-                           @Share("criterion") LocalRef<Criterion> criterion) {
-        if(dimension.get().equals(AetherDimensions.AETHER_DIMENSION_TYPE))
-            AetherBiomeCoordinator.AETHER.addSubBiome(target.get(), biome.get(), criterion.get(), true);    }
+    @Inject(method = "unmarshall", at = @At("HEAD"))
+    public void unmarshall(CallbackInfo ci) {
+
+        BiomePlacementMarshaller.AddSubBiomeMarshaller marshaller = (BiomePlacementMarshaller.AddSubBiomeMarshaller) (Object) this;
+        ResourceKey<DimensionType> dimension = marshaller.dimension();
+        ResourceKey<Biome> biome = marshaller.biome();
+        ResourceKey<Biome> target = marshaller.target();
+        Criterion criterion = marshaller.criterion();
+
+        if(dimension.equals(AetherDimensions.AETHER_DIMENSION_TYPE))
+            AetherBiomeCoordinator.AETHER.addSubBiome(target, biome, criterion, true);    }
 }

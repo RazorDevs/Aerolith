@@ -11,11 +11,8 @@ import com.terraformersmc.biolith.impl.compat.VanillaCompat;
 import com.terraformersmc.biolith.impl.mixin.MixinBiomeSource;
 import io.github.razordevs.aerolith.Aerolith;
 import io.github.razordevs.aerolith.biome.AetherBiomeCoordinator;
-import io.github.razordevs.aerolith.biome.BiomePlacementHelper;
 import net.minecraft.core.Holder;
-import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.level.biome.*;
-import net.minecraft.world.level.dimension.DimensionType;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
@@ -77,7 +74,7 @@ public abstract class MultiNoiseBiomeSourceMixin extends MixinBiomeSource implem
 
     // We calculate the vanilla/datapack biome, then we apply any overlays.
     @Inject(method = "getNoiseBiome(IIILnet/minecraft/world/level/biome/Climate$Sampler;)Lnet/minecraft/core/Holder;", at = @At("HEAD"), cancellable = true)
-    private void biolith$getBiome(int x, int y, int z, Climate.Sampler noise, CallbackInfoReturnable<Holder<Biome>> cir) {
+    private void aerolith$getBiome(int x, int y, int z, Climate.Sampler noise, CallbackInfoReturnable<Holder<Biome>> cir) {
         Climate.TargetPoint noisePoint = noise.sample(x, y, z);
         BiolithFittestNodes<Holder<Biome>> fittestNodes = null;
 

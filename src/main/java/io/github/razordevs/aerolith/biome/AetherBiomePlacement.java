@@ -10,7 +10,8 @@ public class AetherBiomePlacement extends DimensionBiomePlacement {
     public AetherBiomePlacement() {
         super();
 
-        int configScale = Aerolith.getConfigManager().getAerolithConfig().getAetherReplacementScale();
+//        int configScale = Aerolith.getConfigManager().getAerolithConfig().getAetherReplacementScale();
+        int configScale = 1;
         scale[0] = 256 * configScale;
         scale[1] =  64 * configScale;
         scale[2] =  16 * configScale;

@@ -1,0 +1,30 @@
+{
+  "additions": [
+    {
+      "dimension": "aether:the_aether",
+      "biome": "minecraft:crimson_forest",
+      "noise": {
+        "temperature": { "min": -1.0, "max": -0.15 },
+        "humidity": { "min": -1.0, "max": -0.35 },
+        "continentalness": { "min": 0.3, "max": 1.0 },
+        "erosion": { "min": -0.375, "max": 0.05 },
+        "depth": { "min": 0.0, "max": 0.0 },
+        "weirdness": { "min": 0.0, "max": 1.0 },
+        "offset": 0.0
+      }
+    }
+  ],
+  "removals": [
+    {
+      "dimension": "aether:the_aether",
+      "biome": "aether:skyroot_grove"
+    }
+  ],
+  "replacements": [
+    {
+      "dimension": "aether:the_aether",
+      "target": "aether:skyroot_forest",
+      "biome": "minecraft:warped_forest"
+    }
+  ]
+}

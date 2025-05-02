@@ -19,10 +19,16 @@ import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 @Mixin(BiomePlacementMarshaller.ReplaceBiomeMarshaller.class)
 public class ReplaceBiomeMarshallerMixin {
 
-    @Inject(method = "unmarshall", at = @At("HEAD"), locals = LocalCapture.CAPTURE_FAILHARD)
-    public void unmarshall(CallbackInfo ci, @Share("dimension") LocalRef<ResourceKey<DimensionType>> dimension,
-                           @Share("biome") LocalRef<ResourceKey<Biome>> target, @Share("biome") LocalRef<ResourceKey<Biome>> biome,
-                           @Share("proportion") LocalDoubleRef proportion) {
-        if(dimension.get().equals(AetherDimensions.AETHER_DIMENSION_TYPE))
-            AetherBiomeCoordinator.AETHER.addReplacement(target.get(), biome.get(), proportion.get(), true);    }
+    @Inject(method = "unmarshall", at = @At("HEAD"))
+    public void unmarshall(CallbackInfo ci) {
+
+        BiomePlacementMarshaller.ReplaceBiomeMarshaller marshaller = (BiomePlacementMarshaller.ReplaceBiomeMarshaller) (Object) this;
+        ResourceKey<DimensionType> dimension = marshaller.dimension();
+        ResourceKey<Biome> biome = marshaller.biome();
+        ResourceKey<Biome> target = marshaller.target();
+        Double proportion = marshaller.proportion();
+
+        if(dimension.equals(AetherDimensions.AETHER_DIMENSION_TYPE))
+            AetherBiomeCoordinator.AETHER.addReplacement(target, biome, proportion, true);
+    }
 }

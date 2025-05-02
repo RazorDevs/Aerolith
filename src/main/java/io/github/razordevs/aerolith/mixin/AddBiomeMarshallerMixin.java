@@ -3,7 +3,6 @@ package io.github.razordevs.aerolith.mixin;
 import com.aetherteam.aether.data.resources.registries.AetherDimensions;
 import com.terraformersmc.biolith.impl.data.BiomePlacementMarshaller;
 import io.github.razordevs.aerolith.biome.AetherBiomeCoordinator;
-import io.github.razordevs.aerolith.biome.BiomePlacementHelper;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.biome.Climate;

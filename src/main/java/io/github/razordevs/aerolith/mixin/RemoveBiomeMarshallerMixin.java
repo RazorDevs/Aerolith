@@ -18,8 +18,13 @@ import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 @Mixin(BiomePlacementMarshaller.RemoveBiomeMarshaller.class)
 public class RemoveBiomeMarshallerMixin {
 
-    @Inject(method = "unmarshall", at = @At("HEAD"), locals = LocalCapture.CAPTURE_FAILHARD)
-    public void unmarshall(CallbackInfo ci, @Share("dimension") LocalRef<ResourceKey<DimensionType>> dimension, @Share("biome") LocalRef<ResourceKey<Biome>> biome) {
-        if(dimension.get().equals(AetherDimensions.AETHER_DIMENSION_TYPE))
-            AetherBiomeCoordinator.AETHER.addRemoval(biome.get(), true);    }
+    @Inject(method = "unmarshall", at = @At("HEAD"))
+    public void unmarshall(CallbackInfo ci) {
+
+        BiomePlacementMarshaller.RemoveBiomeMarshaller marshaller = (BiomePlacementMarshaller.RemoveBiomeMarshaller) (Object) this;
+        ResourceKey<DimensionType> dimension = marshaller.dimension();
+        ResourceKey<Biome> biome = marshaller.biome();
+
+        if(dimension.equals(AetherDimensions.AETHER_DIMENSION_TYPE))
+            AetherBiomeCoordinator.AETHER.addRemoval(biome, true);    }
 }

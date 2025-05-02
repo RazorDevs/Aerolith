@@ -4,12 +4,7 @@ import com.terraformersmc.biolith.impl.config.BiolithGeneralConfig;
 import net.minecraft.util.Mth;
 
 public class AerolithGeneralConfig extends BiolithGeneralConfig {
-    private boolean enableCommands = true;
     private int aetherReplacementScale = 4;
-
-    public boolean areCommandsEnabled() {
-        return enableCommands;
-    }
 
     public int getAetherReplacementScale() {
         if (aetherReplacementScale < 1 || aetherReplacementScale > 16) {

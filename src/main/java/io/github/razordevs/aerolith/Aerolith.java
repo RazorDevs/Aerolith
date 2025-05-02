@@ -10,7 +10,7 @@ import org.slf4j.Logger;
 @Mod("aerolith")
 public class Aerolith {
     public static final Logger LOGGER = LogUtils.getLogger();
-    private static final AerolithConfigManager CONFIG_MANAGER = new AerolithConfigManager();
+//    private static final AerolithConfigManager CONFIG_MANAGER = new AerolithConfigManager();
 
     public static final String MODID = "aerolith";
     public static final String MOD_VERSION = "0.0.1";
@@ -20,10 +20,10 @@ public class Aerolith {
 
         NeoForge.EVENT_BUS.addListener((ServerStoppedEvent event) -> AetherBiomeCoordinator.handleServerStopped());
 
-        CONFIG_MANAGER.getAerolithConfig();
+//        CONFIG_MANAGER.getAerolithConfig();
     }
 
-    public static AerolithConfigManager getConfigManager() {
-        return CONFIG_MANAGER;
-    }
+//    public static AerolithConfigManager getConfigManager() {
+//        return CONFIG_MANAGER;
+//    }
 }
