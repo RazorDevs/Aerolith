@@ -26,5 +26,6 @@ public class RemoveBiomeMarshallerMixin {
         ResourceKey<Biome> biome = marshaller.biome();
 
         if(dimension.equals(AetherDimensions.AETHER_DIMENSION_TYPE))
-            AetherBiomeCoordinator.AETHER.addRemoval(biome, true);    }
+            AetherBiomeCoordinator.AETHER.addRemoval(biome, true);
+    }
 }

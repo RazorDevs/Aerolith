@@ -27,7 +27,7 @@ public class AetherBiomeCoordinator extends BiomeCoordinator {
             if (AetherDimensions.AETHER_DIMENSION_TYPE.equals(dimensionKey.get())) {
                 if (AETHER_STATE == null) {
                     AETHER_STATE = new BiolithState(world, "aether");
-                    ((DimensionBiomePlacementAccessor) AETHER).invokeServerReplaced(AETHER_STATE, world.getSeed());
+                    ((DimensionBiomePlacementAccessor) AETHER).invokeServerReplaced(AETHER_STATE, world);
                 } else {
                     Aerolith.LOGGER.warn("More than one Aether dimension world created; cowardly ignoring '{}' in favor of '{}'", world.dimension().location(), AETHER_STATE.getWorldId());
                 }

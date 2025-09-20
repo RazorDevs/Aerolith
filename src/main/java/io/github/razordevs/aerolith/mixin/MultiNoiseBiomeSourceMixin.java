@@ -84,7 +84,7 @@ public abstract class MultiNoiseBiomeSourceMixin extends MixinBiomeSource implem
         }
 
         // Apply biome overlays.
-        if (this.biolith$getDimensionType().location().equals(AetherDimensions.AETHER_DIMENSION_TYPE.location())) {
+        if (this.biolith$getDimensionType().equals(AetherDimensions.AETHER_DIMENSION_TYPE)) {
             cir.setReturnValue(AetherBiomeCoordinator.AETHER.getReplacement(x, y, z, noisePoint, fittestNodes));
         } else {
             cir.setReturnValue(fittestNodes.ultimate().value);

@@ -2,6 +2,7 @@ package io.github.razordevs.aerolith.mixin;
 
 import com.aetherteam.aether.data.resources.registries.AetherDimensions;
 import com.llamalad7.mixinextras.sugar.Local;
+import com.terraformersmc.biolith.impl.data.BiomePlacementMarshaller;
 import com.terraformersmc.biolith.impl.data.SurfaceGenerationMarshaller;
 import io.github.razordevs.aerolith.surface.AetherSurfaceGeneration;
 import net.minecraft.resources.ResourceKey;
@@ -19,8 +20,13 @@ import java.util.List;
 @Mixin(SurfaceGenerationMarshaller.SurfaceRuleMarshaller.class)
 public class SurfaceRuleMarshallerMixin {
 
-    @Inject(method = "unmarshall", at = @At("HEAD"), locals = LocalCapture.CAPTURE_FAILSOFT)
-    public void unmarshall(CallbackInfo ci, ResourceKey<DimensionType> dimension, ResourceLocation rulesOwner, List<SurfaceRules.RuleSource> materialRules) {
+    @Inject(method = "unmarshall", at = @At("HEAD"))
+    public void unmarshall(CallbackInfo ci) {
+        SurfaceGenerationMarshaller.SurfaceRuleMarshaller marshaller = (SurfaceGenerationMarshaller.SurfaceRuleMarshaller) (Object) this;
+        var dimension = marshaller.dimension();
+        var rulesOwner = marshaller.rulesOwner();
+        var materialRules = marshaller.materialRules();
+
         if(dimension.equals(AetherDimensions.AETHER_DIMENSION_TYPE))
             AetherSurfaceGeneration.AETHER.addFromData(rulesOwner, materialRules.toArray(new SurfaceRules.RuleSource[0]));
     }

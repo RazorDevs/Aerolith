@@ -1,7 +1,13 @@
 package io.github.razordevs.aerolith;
 
+import com.aetherteam.aether.data.resources.registries.AetherBiomes;
 import com.mojang.logging.LogUtils;
+import com.terraformersmc.biolith.api.biome.BiomePlacement;
 import io.github.razordevs.aerolith.biome.AetherBiomeCoordinator;
+import io.github.razordevs.aerolith.biome.AetherBiomePlacement;
+import io.github.razordevs.aerolith.biome.BiomePlacementHelper;
+import net.minecraft.world.level.biome.Biomes;
+import net.minecraft.world.level.biome.Climate;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.server.ServerStoppedEvent;

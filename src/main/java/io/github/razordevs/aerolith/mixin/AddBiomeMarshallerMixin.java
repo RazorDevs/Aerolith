@@ -23,7 +23,7 @@ public class AddBiomeMarshallerMixin {
         ResourceKey<Biome> biome = marshaller.biome();
         Climate.ParameterPoint noisePoint = marshaller.noisePoint();
 
-        if(dimension.location().equals(AetherDimensions.AETHER_DIMENSION_TYPE.location())) {
+        if(dimension.equals(AetherDimensions.AETHER_DIMENSION_TYPE)) {
             AetherBiomeCoordinator.AETHER.addPlacement(biome, noisePoint, true);
         }
     }

@@ -10,6 +10,7 @@
     "BiomePlacementLoaderMixin",
     "MinecraftServerMixin",
     "MultiNoiseBiomeSourceMixin",
+    "RemoveBiomeMarshallerMixin",
     "ReplaceBiomeMarshallerMixin",
     "ServerLevelMixin",
     "SurfaceRuleMarshallerMixin",

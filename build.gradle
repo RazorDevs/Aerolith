@@ -57,10 +57,9 @@ configurations {
 
 repositories {
     mavenLocal()
-    maven githubPackage.invoke("The-Aether-Team/The-Aether")
-    maven githubPackage.invoke("The-Aether-Team/Nitrogen")
-    maven githubPackage.invoke("The-Aether-Team/Cumulus")
-    maven githubPackage.invoke("The-Aether-Team/Protect-Your-Moa")
+    maven { url = "https://packages.aether-mod.net/The-Aether" }
+    maven { url = "https://packages.aether-mod.net/Nitrogen" }
+    maven { url = "https://packages.aether-mod.net/Cumulus" }
     maven { url = "https://maven.theillusivec4.top/" }
     maven { url = 'https://maven.minecraftforge.net/' }
     maven { url = "https://maven.wispforest.io" }
@@ -100,7 +99,6 @@ dependencies {
     implementation "io.wispforest:accessories-neoforge:${project.accessories_version}+${project.minecraft_version}"
     compileOnly "me.shedaniel.cloth:cloth-config-neoforge:${cloth_config_version}"
 
-    //implementation "curse.maven:biolith-852512:5626825"
     implementation "com.terraformersmc:biolith-neoforge:${project.biolith_version}"
 }
 
