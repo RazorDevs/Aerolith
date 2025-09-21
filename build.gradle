@@ -92,6 +92,8 @@ repositories {
 dependencies {
     implementation "net.neoforged:neoforge:${neo_version}"
 
+    common()
+
     //Aether Dependencies
     implementation "com.aetherteam.aether:aether:${project.aether_version}"
     implementation "com.aetherteam.nitrogen:nitrogen_internals:${project.nitrogen_version}"
