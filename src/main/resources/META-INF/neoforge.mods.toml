@@ -64,8 +64,8 @@ file="META-INF/accesstransformer.cfg"
     side="BOTH"
 
 [[dependencies.${mod_id}]]
-modId="aether"
-type="required"
-versionRange="${aether_version_range}"
-ordering="AFTER"
-side="BOTH"
+    modId="aether"
+    type="required"
+    versionRange="${aether_version_range}"
+    ordering="AFTER"
+    side="BOTH"

@@ -9,7 +9,7 @@ import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.server.ServerStoppedEvent;
 import org.slf4j.Logger;
 
-@Mod("aerolith")
+@Mod(Aerolith.MODID)
 public class Aerolith {
     public static final Logger LOGGER = LogUtils.getLogger();
 
