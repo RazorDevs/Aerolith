@@ -12,7 +12,7 @@ public class AerolithConfig {
             aetherReplacementScale = builder
                     .comment("Handles biome replacement sizes in the Aether.")
                     .translation("config.aerolith.common.aetherReplacementScale")
-                    .define("Aether Replacement Scale", 1);
+                    .define("Aether Replacement Scale", 3);
             builder.pop();
         }
     }
