@@ -13,9 +13,7 @@ import org.slf4j.Logger;
 public class Aerolith {
     public static final Logger LOGGER = LogUtils.getLogger();
 
-    //TODO: Figure out removal of Forgified Api requirement
     //TODO: Handle a weight parameter for each entry that uses Aerolith
-
 
     public static final String MODID = "aerolith";
     public static final String MOD_VERSION = "0.0.1";

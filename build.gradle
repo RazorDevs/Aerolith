@@ -76,6 +76,10 @@ repositories {
         }
     }
     maven {
+        name = "Modrinth"
+        url = "https://api.modrinth.com/maven"
+    }
+    maven {
         name = "ModMaven"
         url = "https://modmaven.dev"
     }
@@ -94,10 +98,7 @@ dependencies {
 
     //Aether Dependencies
     implementation "com.aetherteam.aether:aether:${project.aether_version}"
-    implementation "com.aetherteam.nitrogen:nitrogen_internals:${project.nitrogen_version}"
-    implementation "com.aetherteam.cumulus:cumulus_menus:${project.cumulus_version}"
-    implementation "io.wispforest:accessories-neoforge:${project.accessories_version}+${project.minecraft_version}"
-    compileOnly "me.shedaniel.cloth:cloth-config-neoforge:${cloth_config_version}"
+    runtimeOnly "maven.modrinth:owo-lib:${project.owo_version}"
 
     implementation "com.terraformersmc:biolith-neoforge:${project.biolith_version}"
 }
