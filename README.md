@@ -7,4 +7,4 @@ For more info - [Biolith Repository](https://github.com/TerraformersMC/Biolith)
 # Credits
 
 - Aerolith is property of RazorDevs.
-- Development by TunefulTurnip, darksonic300.
+- Developed and maintained by TunefulTurnip, darksonic300.
