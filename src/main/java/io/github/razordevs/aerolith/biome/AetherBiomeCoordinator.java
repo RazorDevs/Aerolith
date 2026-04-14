@@ -13,7 +13,6 @@ import java.util.Optional;
 
 public class AetherBiomeCoordinator extends BiomeCoordinator {
     public static final AetherBiomePlacement AETHER = new AetherBiomePlacement();
-
     private static BiolithState AETHER_STATE;
 
     public static void handleWorldStarting(ServerLevel world) {

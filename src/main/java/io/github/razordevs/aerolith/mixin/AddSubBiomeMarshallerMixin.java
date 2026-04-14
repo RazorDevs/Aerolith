@@ -19,10 +19,8 @@ import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 
 @Mixin(BiomePlacementMarshaller.AddSubBiomeMarshaller.class)
 public class AddSubBiomeMarshallerMixin {
-
     @Inject(method = "unmarshall", at = @At("HEAD"))
     public void unmarshall(CallbackInfo ci) {
-
         BiomePlacementMarshaller.AddSubBiomeMarshaller marshaller = (BiomePlacementMarshaller.AddSubBiomeMarshaller) (Object) this;
         ResourceKey<DimensionType> dimension = marshaller.dimension();
         ResourceKey<Biome> biome = marshaller.biome();

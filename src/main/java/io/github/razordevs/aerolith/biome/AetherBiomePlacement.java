@@ -22,14 +22,11 @@ public class AetherBiomePlacement extends DimensionBiomePlacement {
     public double getLocalNoise(int x, int y, int z) {
         double localNoise;
 
-        // Four octaves to give some edge fuzz
-        localNoise  = replacementNoise.sample((double)(x + seedlets[0]) / scale[0], (double)(z + seedlets[1]) / scale[0]);
-        localNoise += replacementNoise.sample((double)(x + seedlets[2]) / scale[1], (double)(z + seedlets[3]) / scale[1]) / 4D;
-        localNoise += replacementNoise.sample((double)(x + seedlets[4]) / scale[2], (double)(z + seedlets[5]) / scale[2]) / 16D;
-        localNoise += replacementNoise.sample((double)(x + seedlets[6]) / scale[3], (double)(z + seedlets[7]) / scale[3]) / 32D;
+        localNoise  = replacementNoise.sample((double)(x + seedlets[0]) / scale[0], (double)(y + seedlets[0]) / scale[1], (double)(z + seedlets[1]) / scale[0]);
+        localNoise += replacementNoise.sample((double)(x + seedlets[4]) / scale[2], (double)(y + seedlets[0]) / scale[3], (double)(z + seedlets[5]) / scale[2]) / 16D;
+        localNoise += replacementNoise.sample((double)(x + seedlets[6]) / scale[3], (double)(y + seedlets[0]) / scale[4], (double)(z + seedlets[7]) / scale[3]) / 32D;
 
-        // Scale the result back to amplitude 1 and then normalize
-        localNoise = normalize(localNoise / 1.3125D);
+        localNoise = normalize(localNoise / 1.09375D);
         return localNoise;
     }
 }

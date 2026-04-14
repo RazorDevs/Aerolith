@@ -14,15 +14,12 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(BiomePlacementMarshaller.AddBiomeMarshaller.class)
 public class AddBiomeMarshallerMixin {
-
     @Inject(method = "unmarshall", at = @At("HEAD"))
     public void unmarshall(CallbackInfo ci) {
-
         BiomePlacementMarshaller.AddBiomeMarshaller marshaller = (BiomePlacementMarshaller.AddBiomeMarshaller) (Object) this;
         ResourceKey<DimensionType> dimension = marshaller.dimension();
         ResourceKey<Biome> biome = marshaller.biome();
         Climate.ParameterPoint noisePoint = marshaller.noisePoint();
-
         if(dimension.equals(AetherDimensions.AETHER_DIMENSION_TYPE)) {
             AetherBiomeCoordinator.AETHER.addPlacement(biome, noisePoint, true);
         }

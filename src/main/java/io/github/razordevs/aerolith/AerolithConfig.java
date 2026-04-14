@@ -4,6 +4,10 @@ import net.neoforged.neoforge.common.ModConfigSpec;
 import org.apache.commons.lang3.tuple.Pair;
 
 public class AerolithConfig {
+    private static final Pair<Common, ModConfigSpec> commonSpecPair = new ModConfigSpec.Builder().configure(Common::new);
+    public static final ModConfigSpec COMMON_SPEC = commonSpecPair.getRight();
+    public static final Common COMMON = commonSpecPair.getLeft();
+
     public static class Common {
         public final ModConfigSpec.ConfigValue<Integer> aetherReplacementScale;
 
@@ -15,14 +19,5 @@ public class AerolithConfig {
                     .define("Aether Replacement Scale", 3);
             builder.pop();
         }
-    }
-
-    public static final ModConfigSpec COMMON_SPEC;
-    public static final Common COMMON;
-
-    static {
-        final Pair<Common, ModConfigSpec> commonSpecPair = new ModConfigSpec.Builder().configure(Common::new);
-        COMMON_SPEC = commonSpecPair.getRight();
-        COMMON = commonSpecPair.getLeft();
     }
 }
