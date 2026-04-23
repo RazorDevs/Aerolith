@@ -5,8 +5,7 @@ import com.google.common.collect.Streams;
 import com.llamalad7.mixinextras.sugar.Local;
 import com.terraformersmc.biolith.impl.mixin.MixinChunkGeneratorSettings;
 import com.terraformersmc.biolith.impl.surface.SurfaceRuleCollector;
-import io.github.razordevs.aerolith.surface.AetherSurfaceGeneration;
-import net.minecraft.commands.arguments.DimensionArgument;
+import io.github.razordevs.aerolith.surface.AeroSurfaceRuleAPI;
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.MinecraftServer;
@@ -14,7 +13,6 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.progress.ChunkProgressListener;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.chunk.ChunkGenerator;
-import net.minecraft.world.level.chunk.ChunkGenerators;
 import net.minecraft.world.level.dimension.DimensionType;
 import net.minecraft.world.level.dimension.LevelStem;
 import net.minecraft.world.level.levelgen.NoiseBasedChunkGenerator;
@@ -26,12 +24,9 @@ import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
-import net.minecraft.world.level.dimension.DimensionDefaults;
 
 import java.util.Arrays;
 import java.util.Map;
-import java.util.Optional;
 import java.util.stream.Stream;
 
 @Mixin(MinecraftServer.class)
@@ -53,7 +48,7 @@ public class MinecraftServerMixin {
             if (dimensionKey != null) {
                 if (AetherDimensions.AETHER_DIMENSION_TYPE.equals(dimensionKey)) {
                     dimensionOptions = dimensionOptionsRegistry.get(AetherDimensions.AETHER_DIMENSION_TYPE.location());
-                    surfaceRuleCollector = AetherSurfaceGeneration.AETHER;
+                    surfaceRuleCollector = AeroSurfaceRuleAPI.AETHER;
                 }
             }
 

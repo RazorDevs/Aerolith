@@ -1,7 +1,7 @@
 package io.github.razordevs.aerolith;
 
 import com.mojang.logging.LogUtils;
-import io.github.razordevs.aerolith.biome.AerolithAPI;
+import io.github.razordevs.aerolith.biome.AeroBiomeAPI;
 import io.github.razordevs.aerolith.biome.AetherBiomeCoordinator;
 import io.github.razordevs.aerolith.enums.AeroClimate;
 import io.github.razordevs.aerolith.enums.AeroIslandPos;
@@ -12,7 +12,6 @@ import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.config.ModConfig;
-import net.neoforged.fml.event.IModBusEvent;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.server.ServerStoppedEvent;
@@ -36,7 +35,7 @@ public class Aerolith {
 
     public void commonSetup(FMLCommonSetupEvent event) {
         event.enqueueWork(() -> {
-            AerolithAPI.addBiome(Biomes.DESERT)
+            AeroBiomeAPI.addBiome(Biomes.DESERT)
                     .setIslandPos(AeroIslandPos.EDGE)
                     .setTerrainShape(AeroTerrainShape.HILLY)
                     .setClimate(AeroClimate.COLD)

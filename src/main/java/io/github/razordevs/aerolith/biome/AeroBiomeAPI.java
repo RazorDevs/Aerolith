@@ -9,8 +9,8 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.biome.Climate;
 
-public class AerolithAPI {
-    private AerolithAPI() {}
+public final class AeroBiomeAPI {
+    private AeroBiomeAPI() {}
 
     /**
      * Initializes the Aether Biome Builder for the biome to be added.
