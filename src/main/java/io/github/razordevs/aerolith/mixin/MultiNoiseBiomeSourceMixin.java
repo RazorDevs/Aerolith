@@ -30,7 +30,6 @@ public abstract class MultiNoiseBiomeSourceMixin extends MixinBiomeSource implem
 
     private Climate.ParameterList<Holder<Biome>> aerolith$biomeParameterList;
 
-    // Inject noise points the first time somebody requests them.
     @WrapOperation(
             method = "parameters",
             at = @At(value = "INVOKE", target = "Lcom/mojang/datafixers/util/Either;map(Ljava/util/function/Function;Ljava/util/function/Function;)Ljava/lang/Object;")
@@ -40,25 +39,20 @@ public abstract class MultiNoiseBiomeSourceMixin extends MixinBiomeSource implem
                                                 Function<Climate.ParameterList<Holder<Biome>>, Climate.ParameterList<Holder<Biome>>> leftMap,
                                                 Function<Holder<MultiNoiseBiomeSourceParameterList>, Climate.ParameterList<Holder<Biome>>> rightMap, Operation<Object> original) {
         synchronized (this) {
-            // Only compute this once, since our version is more expensive than Mojang's.
             Aerolith.LOGGER.debug("Injecting parameter list for {}", this.biolith$getDimensionType());
             if (aerolith$biomeParameterList == null) {
-                // Mojang does the exact same cast on the return of this operation.
                 //noinspection unchecked
                 Climate.ParameterList<Holder<Biome>> originalParameterList =
                         (Climate.ParameterList<Holder<Biome>>) original.call(instance, leftMap, rightMap);
 
-                Aerolith.LOGGER.debug("After first check");
                 if (this.biolith$getDimensionType().location().equals(AetherDimensions.AETHER_DIMENSION_TYPE.location())) {
                     List<Pair<Climate.ParameterPoint, Holder<Biome>>> parameterList = new ArrayList<>(256);
 
-                    // Remove any biomes matching removals
                     originalParameterList.values().stream()
                             .filter(AetherBiomeCoordinator.AETHER::removalFilter)
                             .forEach(parameterList::add);
 
                     Aerolith.LOGGER.debug("After second check");
-                    // Add all biomes from additions, replacements, and sub-biome requests
                     AetherBiomeCoordinator.AETHER.writeBiomeEntries(parameterList::add);
 
                     aerolith$biomeParameterList = new Climate.ParameterList<>(parameterList);
@@ -67,7 +61,7 @@ public abstract class MultiNoiseBiomeSourceMixin extends MixinBiomeSource implem
                     aerolith$biomeParameterList = originalParameterList;
                 }
             }
-        } // synchronized (this)
+        }
 
         return aerolith$biomeParameterList;
     }

@@ -16,7 +16,6 @@ public class Aerolith {
     public static final Logger LOGGER = LogUtils.getLogger();
 
     public static final String MODID = "aerolith";
-    public static final String MOD_VERSION = "0.0.1";
 
     public Aerolith(ModContainer mod) {
         LOGGER.info("Aerolith Initialized");
