@@ -98,7 +98,7 @@ dependencies {
 
     //Aether Dependencies
     implementation "com.aetherteam.aether:aether:${project.aether_version}"
-    runtimeOnly "maven.modrinth:owo-lib:${project.owo_version}"
+    implementation "maven.modrinth:owo-lib:${project.owo_version}"
 
     implementation "com.terraformersmc:biolith-neoforge:${project.biolith_version}"
 }

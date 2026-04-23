@@ -3,7 +3,6 @@ package io.github.razordevs.aerolith.mixin;
 import com.terraformersmc.biolith.impl.data.BiomePlacementLoader;
 import com.terraformersmc.biolith.impl.data.BiomePlacementMarshaller;
 import io.github.razordevs.aerolith.biome.AetherBiomeCoordinator;
-import io.github.razordevs.aerolith.biome.BiomePlacementHelper;
 import net.minecraft.server.packs.resources.ResourceManager;
 import net.minecraft.util.profiling.ProfilerFiller;
 import org.spongepowered.asm.mixin.Mixin;
