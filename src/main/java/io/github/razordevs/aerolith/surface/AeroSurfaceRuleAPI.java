@@ -8,9 +8,12 @@ public final class AeroSurfaceRuleAPI {
     public static final SurfaceRuleCollector AETHER = new SurfaceRuleCollector();
 
     private AeroSurfaceRuleAPI() {
-        throw new UnsupportedOperationException();
+        throw new UnsupportedOperationException(
+                String.format("%s cannot be instantiated.", AeroSurfaceRuleAPI.class.getName())
+        );
     }
 
+    //TODO: Bring up to speed with patterns
     /**
      * Add surface rules to The Aether.  Rules may optionally be pre-sequenced,
      * or Biolith will sequence rules together grouped by rulesOwner, prior to injection.

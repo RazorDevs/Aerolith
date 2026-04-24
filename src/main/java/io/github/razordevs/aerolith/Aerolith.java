@@ -1,5 +1,7 @@
 package io.github.razordevs.aerolith;
 
+import com.aetherteam.aether.data.resources.AetherFeatureStates;
+import com.aetherteam.aether.world.processor.SurfaceRuleProcessor;
 import com.mojang.logging.LogUtils;
 import io.github.razordevs.aerolith.biome.AeroBiomeAPI;
 import io.github.razordevs.aerolith.biome.AetherBiomeCoordinator;
@@ -7,7 +9,11 @@ import io.github.razordevs.aerolith.enums.AeroClimate;
 import io.github.razordevs.aerolith.enums.AeroIslandPos;
 import io.github.razordevs.aerolith.enums.AeroLayer;
 import io.github.razordevs.aerolith.enums.AeroTerrainShape;
+import io.github.razordevs.aerolith.surface.AeroSurfaceRuleAPI;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.biome.Biomes;
+import net.minecraft.world.level.levelgen.Noises;
+import net.minecraft.world.level.levelgen.SurfaceRules;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.Mod;
@@ -17,19 +23,16 @@ import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.server.ServerStoppedEvent;
 import org.slf4j.Logger;
 
-// Could this whole thing be done better? Yes.
-
 @Mod(Aerolith.MODID)
 public class Aerolith {
     public static final Logger LOGGER = LogUtils.getLogger();
-
     public static final String MODID = "aerolith";
 
     public Aerolith(ModContainer mod, IEventBus bus) {
         NeoForge.EVENT_BUS.addListener((ServerStoppedEvent event) -> AetherBiomeCoordinator.handleServerStopped());
         mod.registerConfig(ModConfig.Type.COMMON, AerolithConfig.COMMON_SPEC);
 
-        bus.addListener(this::commonSetup);
+        //bus.addListener(this::commonSetup);
         LOGGER.info("Aerolith Initialized");
     }
 
@@ -41,6 +44,14 @@ public class Aerolith {
                     .setClimate(AeroClimate.COLD)
                     .setLayer(AeroLayer.SKY)
                     .build();
+
+            AeroSurfaceRuleAPI.addSurfaceRules(
+                ResourceLocation.fromNamespaceAndPath(Aerolith.MODID, "rules/aether"),
+                    SurfaceRules.ifTrue(SurfaceRules.isBiome(Biomes.DESERT),
+                        SurfaceRules.ifTrue(SurfaceRules.ON_FLOOR,
+                            SurfaceRules.ifTrue(SurfaceRules.noiseCondition(Noises.SWAMP, 0.2D),
+                                SurfaceRules.state(AetherFeatureStates.QUICKSOIL))))
+            );
         });
     }
 }

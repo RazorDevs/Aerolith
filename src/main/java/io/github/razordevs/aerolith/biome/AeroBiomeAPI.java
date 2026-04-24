@@ -5,12 +5,17 @@ import io.github.razordevs.aerolith.enums.AeroClimate;
 import io.github.razordevs.aerolith.enums.AeroIslandPos;
 import io.github.razordevs.aerolith.enums.AeroLayer;
 import io.github.razordevs.aerolith.enums.AeroTerrainShape;
+import io.github.razordevs.aerolith.surface.AeroSurfaceRuleAPI;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.biome.Climate;
 
 public final class AeroBiomeAPI {
-    private AeroBiomeAPI() {}
+    private AeroBiomeAPI() {
+        throw new UnsupportedOperationException(
+                String.format("%s cannot be instantiated.", AeroBiomeAPI.class.getName())
+        );
+    }
 
     /**
      * Initializes the Aether Biome Builder for the biome to be added.
@@ -19,6 +24,19 @@ public final class AeroBiomeAPI {
      */
     public static BiomeBuilder addBiome(ResourceKey<Biome> biomeKey) {
         return new BiomeBuilder(biomeKey);
+    }
+
+    /**
+     * <em>Use of {@link #addBiome(ResourceKey)} is encouraged.</em>
+     * <br><br>
+     * Add an Aether biome with its respective parameter point definition.
+     *
+     * @param biomeKey      The biome to be placed
+     * @param noisePoint    The biome parameter points
+     */
+    @Deprecated
+    public static void addBiome(ResourceKey<Biome> biomeKey, Climate.ParameterPoint noisePoint) {
+        AetherBiomeCoordinator.AETHER.addPlacement(biomeKey, noisePoint, false);
     }
 
     /**
@@ -78,6 +96,9 @@ public final class AeroBiomeAPI {
             this.biomeKey = biomeKey;
         }
 
+        /**
+         * See {@link AeroLayer} for more information.
+         */
         public BiomeBuilder setLayer(AeroLayer layer) {
             this.depth = layer.getDepth();
             return this;
@@ -88,6 +109,9 @@ public final class AeroBiomeAPI {
             return this;
         }
 
+        /**
+         * See {@link AeroTerrainShape} for more information.
+         */
         public BiomeBuilder setTerrainShape(AeroTerrainShape shape) {
             this.erosion = shape.getErosion();
             this.weirdness = shape.getWeirdness();
@@ -100,6 +124,9 @@ public final class AeroBiomeAPI {
             return this;
         }
 
+        /**
+         * See {@link AeroClimate} for more information.
+         */
         public BiomeBuilder setClimate(AeroClimate climate) {
             this.temperature = climate.getTemperature();
             this.humidity = climate.getHumidity();
@@ -112,6 +139,9 @@ public final class AeroBiomeAPI {
             return this;
         }
 
+        /**
+         * See {@link AeroIslandPos} for more information.
+         */
         public BiomeBuilder setIslandPos(AeroIslandPos pos) {
             this.continentalness = pos.getContinentalness();
             return this;
@@ -122,20 +152,33 @@ public final class AeroBiomeAPI {
             return this;
         }
 
+        /**
+         * Resets all noise biome parameters.
+         */
+        public BiomeBuilder reset() {
+            this.temperature = null;
+            this.humidity = null;
+            this.continentalness = null;
+            this.erosion = null;
+            this.depth = null;
+            this.weirdness = null;
+            return this;
+        }
+
         public void build() {
             if (temperature == null || humidity == null || continentalness == null ||
                     erosion == null || depth == null || weirdness == null)
                 throw new IllegalStateException("Not all parameters have been set");
 
-            AetherBiomeCoordinator.AETHER.addPlacement(biomeKey, new Climate.ParameterPoint(
-                            temperature,
-                            humidity,
-                            continentalness,
-                            erosion,
-                            depth,
-                            weirdness,
-                            0L
-                    ), false);
+            AeroBiomeAPI.addBiome(biomeKey, new Climate.ParameterPoint(
+                    temperature,
+                    humidity,
+                    continentalness,
+                    erosion,
+                    depth,
+                    weirdness,
+                    0L
+            ));
         }
     }
 }
