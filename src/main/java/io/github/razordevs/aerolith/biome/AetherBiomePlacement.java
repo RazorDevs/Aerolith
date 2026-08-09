@@ -1,8 +1,6 @@
 package io.github.razordevs.aerolith.biome;
 
-import com.terraformersmc.biolith.impl.Biolith;
 import com.terraformersmc.biolith.impl.biome.DimensionBiomePlacement;
-import io.github.razordevs.aerolith.Aerolith;
 import io.github.razordevs.aerolith.AerolithConfig;
 
 public class AetherBiomePlacement extends DimensionBiomePlacement {

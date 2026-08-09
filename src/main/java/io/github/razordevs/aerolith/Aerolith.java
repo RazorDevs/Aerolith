@@ -1,7 +1,6 @@
 package io.github.razordevs.aerolith;
 
 import com.aetherteam.aether.data.resources.AetherFeatureStates;
-import com.aetherteam.aether.world.processor.SurfaceRuleProcessor;
 import com.mojang.logging.LogUtils;
 import io.github.razordevs.aerolith.biome.AeroBiomeAPI;
 import io.github.razordevs.aerolith.biome.AetherBiomeCoordinator;

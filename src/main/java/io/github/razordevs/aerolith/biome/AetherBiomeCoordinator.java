@@ -39,7 +39,8 @@ public class AetherBiomeCoordinator extends BiomeCoordinator {
     }
 
     public static void handleServerStopped() {
-        registryManager = null;
+    	// TODO: This line causes a compilation error.
+    	//registryManager = null;
 
         AETHER_STATE = null;
         ((DimensionBiomePlacementAccessor) AETHER).invokeServerStopped();

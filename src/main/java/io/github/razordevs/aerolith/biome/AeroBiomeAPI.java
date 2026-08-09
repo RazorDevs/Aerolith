@@ -5,7 +5,6 @@ import io.github.razordevs.aerolith.enums.AeroClimate;
 import io.github.razordevs.aerolith.enums.AeroIslandPos;
 import io.github.razordevs.aerolith.enums.AeroLayer;
 import io.github.razordevs.aerolith.enums.AeroTerrainShape;
-import io.github.razordevs.aerolith.surface.AeroSurfaceRuleAPI;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.biome.Climate;
