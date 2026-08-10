@@ -2,7 +2,6 @@ package io.github.razordevs.aerolith.mixin;
 
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
-import com.terraformersmc.biolith.impl.biome.BiomeCoordinator;
 import io.github.razordevs.aerolith.biome.AetherBiomeCoordinator;
 import net.minecraft.server.level.ServerChunkCache;
 import net.minecraft.server.level.ServerLevel;

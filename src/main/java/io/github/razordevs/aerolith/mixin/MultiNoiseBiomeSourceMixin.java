@@ -24,7 +24,7 @@ import java.util.List;
 import java.util.function.Function;
 
 @Mixin(value = MultiNoiseBiomeSource.class, priority = 800)
-public abstract class MultiNoiseBiomeSourceMixin extends MixinBiomeSource implements InterfaceBiomeSource  {
+public abstract class MultiNoiseBiomeSourceMixin extends MixinBiomeSource {
     @Shadow
     protected abstract Climate.ParameterList<Holder<Biome>> parameters();
 
